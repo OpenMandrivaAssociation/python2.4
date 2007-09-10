@@ -3,7 +3,7 @@
 
 %define lib_major	%{dirver}
 %define lib_name_orig	libpython
-%define lib_name	%mklibname %{name} %{lib_major}
+%define lib_name	%mklibname python %{lib_major}
 
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
@@ -36,7 +36,6 @@ Patch7:     python-2.4.3-fix-buffer_overflow_with_glibc2.3.5.diff
 Patch8:     python-2.4.4-parallel.patch
 URL:		http://www.python.org/
 Icon:		python-logo.xpm
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Conflicts:	tkinter < %{version}
 Requires:	%{lib_name} = %{version}
 Requires:	%{name}-base = %{version}
@@ -57,6 +56,8 @@ BuildRequires:	tcl tk tix
 BuildRequires:	tix
 BuildRequires:	autoconf2.5
 BuildRequires:  bzip2-devel
+Provides:       python = %{name}-%{version}
+Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Python is an interpreted, interactive, object-oriented programming
@@ -121,14 +122,14 @@ in ASCII text files and in LaTeX source files.
 Install the python-docs package if you'd like to use the documentation
 for the Python language.
 
-%package -n	tkinter
+%package -n	tkinter2.4
 Summary:	A graphical user interface for the Python scripting language
 Group:		Development/Python
 Icon:		python-tkinter-logo.xpm
-Requires:	python = %version
-Requires:       tcl tk
+Requires:	%{name} = %version
+Requires:   tcl tk
 
-%description -n	tkinter
+%description -n	tkinter2.4
 The Tkinter (Tk interface) program is an graphical user interface for
 the Python scripting language.
 
@@ -408,7 +409,7 @@ rm -f modules-list main.list
 %doc html/*/*
 %{_datadir}/applications/mandriva-%{name}-docs.desktop
 
-%files -n tkinter
+%files -n tkinter2.4
 %defattr(-,root,root)
 %dir %{_libdir}/python*/lib-tk
 %{_libdir}/python*/lib-tk/*.py*
@@ -428,9 +429,9 @@ rm -f modules-list main.list
 %post -n %{lib_name} -p /sbin/ldconfig
 %postun -n %{lib_name} -p /sbin/ldconfig
 
-%post -n tkinter
+%post -n tkinter2.4
 %update_menus
 
-%postun -n tkinter
+%postun -n tkinter2.4
 %clean_menus
 
