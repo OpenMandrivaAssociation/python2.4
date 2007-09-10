@@ -22,7 +22,7 @@ Source4:	python-mode-1.0.tar.bz2
 Patch3:		Python-2.3-no-local-incpath.patch.bz2
 
 # Support */lib64 convention on x86_64, sparc64, etc.
-Patch4:		Python-2.4.1-lib64.patch.bz2
+Patch4:		Python-2.4.4-lib64.patch
 
 # Do handle <asm-XXX/*.h> headers in h2py.py
 # FIXME: incomplete for proper bi-arch support as #if/#else/#endif
@@ -149,7 +149,7 @@ of a Mandriva Linux distribution.
 # local include
 %patch3 -p1 
 # lib64
-#%patch4 -p1
+%patch4 -p1
 # biarch header
 %patch5 -p1
 # gdbm 
@@ -196,7 +196,11 @@ export TMP="/tmp" TMPDIR="/tmp"
 # (misc) test_minidom is not working for the moment
 # tested on 2.4.1 (mdk), on ubuntu, on debian, on freebsd and gentoo
 # should be reenabled for 2.4.3
-make test TESTOPTS="-l -x test_linuxaudiodev -x test_nis -x test_minidom -x test_socket"
+TESTOPTS="-l -x test_linuxaudiodev -x test_nis -x test_minidom -x test_socket"
+%ifarch x86_64
+TESTOPTS="$TESTOPTS  -x test_pwd"
+%endif
+make test TESTOPTS="$TESTOPTS"
 
 %install
 rm -rf %{buildroot}
