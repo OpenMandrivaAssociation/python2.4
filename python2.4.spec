@@ -8,7 +8,7 @@
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
 Version:	2.4.4
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
@@ -231,8 +231,8 @@ mv %{buildroot}%{_bindir}/idle %{buildroot}%{_bindir}/idle2.4
 
 # emacs, I use it, I want it
 mkdir -p %{buildroot}%{_datadir}/emacs/site-lisp
-install -m 644 Misc/python-mode.el %{buildroot}%{_datadir}/emacs/site-lisp
-emacs -batch -f batch-byte-compile %{buildroot}%{_datadir}/emacs/site-lisp/python-mode.el
+install -m 644 Misc/python-mode.el %{buildroot}%{_datadir}/emacs/site-lisp/python2.4-mode.el
+emacs -batch -f batch-byte-compile %{buildroot}%{_datadir}/emacs/site-lisp/python2.4-mode.el
 
 install -d %{buildroot}%{_sysconfdir}/emacs/site-start.d
 cat <<EOF >%{buildroot}%{_sysconfdir}/emacs/site-start.d/%{name}.el
