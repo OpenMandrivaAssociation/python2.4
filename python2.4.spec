@@ -318,7 +318,7 @@ cat >> modules-list << EOF
 %{_libdir}/python*/hotshot/
 %{_libdir}/python*/site-packages/README
 %{_libdir}/python*/plat-linux2/
-%{_datadir}/emacs/site-lisp/python-mode.el*
+%{_datadir}/emacs/site-lisp/python2.4-mode.el*
 EOF
 
 LD_LIBRARY_PATH=%{buildroot}%{_libdir} %{buildroot}%{_bindir}/python2.4 %{SOURCE3} %{buildroot} include.list modules-list > main.list
