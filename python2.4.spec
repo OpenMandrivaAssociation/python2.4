@@ -8,7 +8,7 @@
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
 Version:	2.4.4
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
@@ -56,7 +56,7 @@ BuildRequires:	tcl tk tix
 BuildRequires:	tix
 BuildRequires:	autoconf2.5
 BuildRequires:  bzip2-devel
-Provides:       python = %{name}-%{version}
+Provides:       python = 2.4
 Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -96,7 +96,7 @@ Requires:	%{lib_name} = %{version}
 Obsoletes:	%{name}-devel
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	%{lib_name_orig}-devel = %{version}-%{release}
-Provides:	python-devel = %{version}-%{release}
+Provides:	python-devel = 2.4
 
 %description -n	%{lib_name}-devel
 The Python programming language's interpreter can be extended with
