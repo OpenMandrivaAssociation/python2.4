@@ -8,7 +8,7 @@
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
 Version:	2.4.4
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
@@ -96,6 +96,7 @@ Requires:	%{lib_name} = %{version}
 Obsoletes:	%{name}-devel
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	%{lib_name_orig}-devel = %{version}-%{release}
+Provides:	python-devel = %{version}-%{release}
 
 %description -n	%{lib_name}-devel
 The Python programming language's interpreter can be extended with
