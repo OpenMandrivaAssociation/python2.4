@@ -8,7 +8,7 @@
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
 Version:	2.4.4
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
@@ -32,14 +32,15 @@ Patch5:		Python-2.2.2-biarch-headers.patch.bz2
 # detect and link with gdbm_compat for dbm module
 Patch6:		Python-2.4.1-gdbm.patch.bz2
 
-Patch7:     python-2.4.3-fix-buffer_overflow_with_glibc2.3.5.diff
-Patch8:     python-2.4.4-parallel.patch
+Patch7:		python-2.4.3-fix-buffer_overflow_with_glibc2.3.5.diff
+Patch8:		python-2.4.4-parallel.patch
+Patch9:		python-2.4.4-CVE-2007-2052.patch
 URL:		http://www.python.org/
 Icon:		python-logo.xpm
 Conflicts:	tkinter < %{version}
 Requires:	%{lib_name} = %{version}
 Requires:	%{name}-base = %{version}
-BuildRequires:	X11-devel 
+BuildRequires:	XFree86-devel 
 BuildRequires:	blt
 BuildRequires:	db2-devel, db4-devel
 BuildRequires:	emacs-bin
@@ -160,6 +161,8 @@ of a Mandriva Linux distribution.
 %patch7 -p0
 # allow parallel usage with main python
 %patch8 -p1
+# security fix CVE-2007-2052
+%patch9 -p1
 autoconf
 
 mkdir html
@@ -276,7 +279,7 @@ sed -e "s|%{buildroot}||g" < modules-list.full > modules-list
 
 
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-tkinter.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/mandriva-tkinter2.4.desktop << EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=IDLE
@@ -329,6 +332,10 @@ chmod 644 %{buildroot}%{_libdir}/python*/test/test_{binascii,grp,htmlparser}.py*
 # fix python library not stripped
 chmod u+w %{buildroot}%{_libdir}/libpython2.4.so.1.0
 
+# avoid conflicts with python 2.5 man page
+if [ -e %{buildroot}%{_mandir}/man1/python.1 ]; then
+	mv -f %{buildroot}%{_mandir}/man1/python.1 %{buildroot}%{_mandir}/man1/python2.4.1
+fi
 
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 
@@ -421,7 +428,7 @@ rm -f modules-list main.list
 %{_bindir}/idle2.4
 %{_bindir}/pynche2.4
 %{_bindir}/modulator2.4
-%{_datadir}/applications/mandriva-tkinter.desktop
+%{_datadir}/applications/mandriva-tkinter2.4.desktop
 
 %files base -f include.list
 %defattr(-,root,root)
@@ -435,4 +442,5 @@ rm -f modules-list main.list
 
 %postun -n tkinter2.4
 %clean_menus
+
 
