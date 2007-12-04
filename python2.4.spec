@@ -39,7 +39,7 @@ Icon:		python-logo.xpm
 Conflicts:	tkinter < %{version}
 Requires:	%{lib_name} = %{version}
 Requires:	%{name}-base = %{version}
-BuildRequires:	XFree86-devel 
+BuildRequires:	X11-devel 
 BuildRequires:	blt
 BuildRequires:	db2-devel, db4-devel
 BuildRequires:	emacs-bin
