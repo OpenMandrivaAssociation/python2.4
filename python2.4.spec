@@ -36,7 +36,6 @@ Patch7:		python-2.4.3-fix-buffer_overflow_with_glibc2.3.5.diff
 Patch8:		python-2.4.4-parallel.patch
 Patch9:		python-2.4.4-CVE-2007-2052.patch
 URL:		http://www.python.org/
-Icon:		python-logo.xpm
 Conflicts:	tkinter < %{version}
 Requires:	%{lib_name} = %{version}
 Requires:	%{name}-base = %{version}
@@ -91,7 +90,6 @@ compared to Tcl, Perl, Scheme or Java.
 %package -n	%{lib_name}-devel
 Summary:	The libraries and header files needed for Python development
 Group:		Development/Python
-Icon:		python-devel-logo.xpm
 Requires:	%{name} = %version
 Requires:	%{lib_name} = %{version}
 Obsoletes:	%{name}-devel
@@ -112,7 +110,6 @@ documentation.
 
 %package	docs
 Summary:	Documentation for the Python programming language
-Icon:		python-docs-logo.xpm
 Requires:	python = %version
 Group:		Development/Python
 
@@ -127,7 +124,6 @@ for the Python language.
 %package -n	tkinter2.4
 Summary:	A graphical user interface for the Python scripting language
 Group:		Development/Python
-Icon:		python-tkinter-logo.xpm
 Requires:	%{name} = %version
 Requires:   tcl tk
 
