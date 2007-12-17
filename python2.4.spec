@@ -57,7 +57,6 @@ BuildRequires:	tix
 BuildRequires:	autoconf2.5
 BuildRequires:  bzip2-devel
 Provides:       python = %{version}-%{release}
-Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Python is an interpreted, interactive, object-oriented programming
