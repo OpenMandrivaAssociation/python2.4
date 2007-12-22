@@ -8,7 +8,7 @@
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
 Version:	2.4.4
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
@@ -335,23 +335,20 @@ fi
 
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 
-cat > %{buildroot}%{_sysconfdir}/profile.d/python2.4.sh << EOF
-#!/bin/sh
-if [ -f \$HOME/.python2.4rc.py ] ; then
-	export PYTHONSTARTUP=\$HOME/.python2.4rc.py
+cat > %{buildroot}%{_sysconfdir}/profile.d/30python2.4.sh << 'EOF'
+if [ -f $HOME/.python2.4rc.py ] ; then
+	export PYTHONSTARTUP=$HOME/.python2.4rc.py
 else
 	export PYTHONSTARTUP=/etc/python2.4rc.py
 fi
-	
 EOF
 
-cat > %{buildroot}/%{_sysconfdir}/profile.d/python2.4.csh << EOF
-if ( -f \${HOME}/.python2.4rc.py ) then
-	setenv PYTHONSTARTUP \${HOME}/.python2.4rc.py
+cat > %{buildroot}/%{_sysconfdir}/profile.d/30python2.4.csh << 'EOF'
+if ( -f ${HOME}/.python2.4rc.py ) then
+	setenv PYTHONSTARTUP ${HOME}/.python2.4rc.py
 else
 	setenv PYTHONSTARTUP /etc/python2.4rc.py
 endif
-
 EOF
 
 cat >  %{buildroot}%{_sysconfdir}/python2.4rc.py << EOF
@@ -367,8 +364,6 @@ except:
 # you can place a file .python2.4rc.py in your home to overrides this one
 # but then, this file will not be sourced
 EOF
-
-chmod ugo+rx %{buildroot}%{_sysconfdir}/profile.d/*
 
 cat > README.mdv << EOF
 Python interpreter support readline completion by default.
