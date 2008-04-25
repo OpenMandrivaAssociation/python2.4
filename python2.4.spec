@@ -8,7 +8,7 @@
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
 Version:	2.4.4
-Release:	%mkrel 9
+Release:	%mkrel 10
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
@@ -36,6 +36,7 @@ Patch7:		python-2.4.3-fix-buffer_overflow_with_glibc2.3.5.diff
 Patch8:		python-2.4.4-parallel.patch
 Patch9:		python-2.4.4-CVE-2007-2052.patch
 Patch10:	python-2.3.CVE-2007-4965-int-overflow.patch
+Patch11:	python-2.4-CVE-2008-1721.patch
 URL:		http://www.python.org/
 Conflicts:	tkinter < %{version}
 Requires:	%{lib_name} = %{version}
@@ -161,6 +162,8 @@ of a Mandriva Linux distribution.
 %patch9 -p1
 # security fix for CVE-2007-4965
 %patch10 -p1 -b .cve-2007-4965
+# security fix for CVE-2008-1721
+%patch11 -p1 -b .cve.2008-1721
 
 autoconf
 
