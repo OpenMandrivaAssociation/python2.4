@@ -7,8 +7,8 @@
 
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
-Version:	2.4.4
-Release:	%mkrel 10
+Version:	2.4.5
+Release:	%mkrel 1
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
