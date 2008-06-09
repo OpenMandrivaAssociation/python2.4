@@ -429,8 +429,12 @@ rm -f modules-list main.list
 %defattr(-,root,root)
 %dir %{_libdir}/python*
 
+%if %mdkversion < 200900
 %post -n %{lib_name} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name} -p /sbin/ldconfig
+%endif
 
 %post -n tkinter2.4
 %update_menus
