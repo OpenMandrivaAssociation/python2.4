@@ -81,8 +81,6 @@ package.
 %package -n	%{lib_name}
 Summary:	Shared libraries for Python %{version}
 Group:		System/Libraries
-Requires(post):		/sbin/ldconfig
-Requires(postun):	/sbin/ldconfig
 
 %description -n	%{lib_name}
 This packages contains Python shared object library.  Python is an
