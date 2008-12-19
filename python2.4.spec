@@ -27,7 +27,7 @@ Patch4:		Python-2.4.4-lib64.patch
 # Do handle <asm-XXX/*.h> headers in h2py.py
 # FIXME: incomplete for proper bi-arch support as #if/#else/#endif
 # clauses generally should have been handled
-Patch5:		Python-2.2.2-biarch-headers.patch.bz2
+Patch5:		python-2.4.5-biarch-headers.patch
 
 # detect and link with gdbm_compat for dbm module
 Patch6:		Python-2.4.1-gdbm.patch.bz2
@@ -35,7 +35,7 @@ Patch6:		Python-2.4.1-gdbm.patch.bz2
 Patch7:		python-2.4.3-fix-buffer_overflow_with_glibc2.3.5.diff
 Patch8:		python-2.4.4-parallel.patch
 Patch9:		python-2.4.4-CVE-2007-2052.patch
-Patch10:	python-2.3.CVE-2007-4965-int-overflow.patch
+Patch10:	python-2.4.5-CVE-2007-4965-int-overflow.patch
 Patch11:	python-2.4-CVE-2008-1721.patch
 URL:		http://www.python.org/
 Conflicts:	tkinter < %{version}
