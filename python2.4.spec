@@ -37,6 +37,7 @@ Patch8:		python-2.4.4-parallel.patch
 Patch9:		python-2.4.4-CVE-2007-2052.patch
 Patch10:	python-2.4.5-CVE-2007-4965-int-overflow.patch
 Patch11:	python-2.4-CVE-2008-1721.patch
+Patch12:	python-2.5-format-string.patch
 URL:		http://www.python.org/
 Conflicts:	tkinter < %{version}
 Requires:	%{lib_name} = %{version}
@@ -162,6 +163,8 @@ of a Mandriva Linux distribution.
 %patch10 -p1 -b .cve-2007-4965
 # security fix for CVE-2008-1721
 %patch11 -p1 -b .cve.2008-1721
+
+%patch12 -p0
 
 autoconf
 
