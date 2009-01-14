@@ -60,7 +60,6 @@ BuildRequires:	tcl tk tix
 BuildRequires:	tix
 BuildRequires:	autoconf2.5
 BuildRequires:  bzip2-devel
-Provides:       python = %{version}-%{release}
 Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -96,7 +95,6 @@ Requires:	%{name} = %version
 Requires:	%{lib_name} = %{version}
 Obsoletes:	%{name}-devel
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	%{lib_name_orig}-devel = %{version}-%{release}
 
 %description -n	%{lib_name}-devel
 The Python programming language's interpreter can be extended with
