@@ -4,6 +4,7 @@
 %define lib_major	%{dirver}
 %define lib_name_orig	libpython
 %define lib_name	%mklibname python %{lib_major}
+%define _disable_ld_no_undefined 1
 
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
@@ -419,7 +420,7 @@ rm -f modules-list main.list
 %defattr(-,root,root)
 %dir %{_libdir}/python*/lib-tk
 %{_libdir}/python*/lib-tk/*.py*
-%{_libdir}/python*/lib-dynload/_tkinter.so
+#%{_libdir}/python*/lib-dynload/_tkinter.so
 %{_libdir}/python*/idlelib
 %{_libdir}/python*/site-packages/modulator
 %{_libdir}/python*/site-packages/pynche
