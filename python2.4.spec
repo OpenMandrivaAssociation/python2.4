@@ -5,6 +5,7 @@
 %define lib_name_orig	libpython
 %define lib_name	%mklibname python %{lib_major}
 %define _disable_ld_no_undefined 1
+%define _requires_exceptions python-base
 
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
@@ -109,7 +110,7 @@ documentation.
 
 %package	docs
 Summary:	Documentation for the Python programming language
-Requires:	python = %version
+Requires:	%{name} = %version
 Group:		Development/Python
 
 %description	docs
