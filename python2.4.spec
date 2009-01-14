@@ -55,10 +55,6 @@ BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel 
 BuildRequires:	readline-devel 
 BuildRequires:	termcap-devel
-BuildRequires:	tcl tcl-devel
-BuildRequires:	tk tk-devel
-BuildRequires:	tcl tk tix
-BuildRequires:	tix
 BuildRequires:	autoconf2.5
 BuildRequires:  bzip2-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}
@@ -120,19 +116,6 @@ in ASCII text files and in LaTeX source files.
 
 Install the python-docs package if you'd like to use the documentation
 for the Python language.
-
-%package -n	tkinter2.4
-Summary:	A graphical user interface for the Python scripting language
-Group:		Development/Python
-Requires:	%{name} = %version
-Requires:   tcl tk
-
-%description -n	tkinter2.4
-The Tkinter (Tk interface) program is an graphical user interface for
-the Python scripting language.
-
-You should install the tkinter package if you'd like to use a graphical
-user interface for Python programming.
 
 %package	base
 Summary:	Python base files
@@ -250,26 +233,6 @@ EOF
 # smtpd proxy
 mv -f %{buildroot}%{_bindir}/smtpd.py %{buildroot}%{_libdir}/python%{dirver}/
 
-# modulator
-cat << EOF > %{buildroot}%{_bindir}/modulator2.4
-#!/bin/bash
-exec %{_libdir}/python%{dirver}/site-packages/modulator/modulator.py
-EOF
-cp -r Tools/modulator %{buildroot}%{_libdir}/python%{dirver}/site-packages/
-
-# pynche
-cat << EOF > %{buildroot}%{_bindir}/pynche2.4
-#!/bin/bash
-exec %{_libdir}/python%{dirver}/site-packages/pynche/pynche
-EOF
-rm -f Tools/pynche/*.pyw
-cp -r Tools/pynche %{buildroot}%{_libdir}/python%{dirver}/site-packages/
-
-chmod 755 %{buildroot}%{_bindir}/{idle,modulator,pynche}2.4
-
-ln -f Tools/modulator/README Tools/modulator/README.modulator
-ln -f Tools/pynche/README Tools/pynche/README.pynche
-
 rm -f modules-list.full
 for n in %{buildroot}%{_libdir}/python%{dirver}/*; do
   [ -d $n ] || echo $n
@@ -282,19 +245,6 @@ sed -e "s|%{buildroot}||g" < modules-list.full > modules-list
 
 
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-tkinter2.4.desktop << EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=IDLE
-Comment=IDE for Python
-Exec=%{_bindir}/idle2.4
-Icon=development_environment_section
-Terminal=false
-Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Development-DevelopmentEnvironments;Development;IDE;
-EOF
-
-
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}-docs.desktop << EOF
 [Desktop Entry]
 Encoding=UTF-8
@@ -383,6 +333,13 @@ EOF
 
 %multiarch_includes %{buildroot}/usr/include/python*/pyconfig.h
 
+# drop tkinter files
+rm -rf %{buildroot}%{_libdir}/python2.4/lib-tk
+rm -rf %{buildroot}%{_libdir}/python2.4/idlelib
+rm -rf %{buildroot}%{_libdir}/python2.4/site-packages/modulator
+rm -rf %{buildroot}%{_libdir}/python2.4/site-packages/pynche
+rm -f %{buildroot}%{_bindir}/idle2.4
+
 %clean
 rm -rf %{buildroot}
 rm -f modules-list main.list
@@ -415,18 +372,6 @@ rm -f modules-list main.list
 %doc html/*/*
 %{_datadir}/applications/mandriva-%{name}-docs.desktop
 
-%files -n tkinter2.4
-%defattr(-,root,root)
-%dir %{_libdir}/python*/lib-tk
-%{_libdir}/python*/lib-tk/*.py*
-#%{_libdir}/python*/lib-dynload/_tkinter.so
-%{_libdir}/python*/idlelib
-%{_libdir}/python*/site-packages/modulator
-%{_libdir}/python*/site-packages/pynche
-%{_bindir}/idle2.4
-%{_bindir}/pynche2.4
-%{_bindir}/modulator2.4
-%{_datadir}/applications/mandriva-tkinter2.4.desktop
 
 %files base -f include.list
 %defattr(-,root,root)
@@ -438,15 +383,3 @@ rm -f modules-list main.list
 %if %mdkversion < 200900
 %postun -n %{lib_name} -p /sbin/ldconfig
 %endif
-
-%if %mdkversion < 200900
-%post -n tkinter2.4
-%update_menus
-%endif
-
-%if %mdkversion < 200900
-%postun -n tkinter2.4
-%clean_menus
-%endif
-
-
