@@ -10,7 +10,7 @@
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python2.4
 Version:	2.4.5
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	Modified CNRI Open Source License
 Group:		Development/Python
 
@@ -44,6 +44,7 @@ URL:		http://www.python.org/
 Conflicts:	tkinter < %{version}
 Requires:	%{lib_name} = %{version}
 Requires:	%{name}-base = %{version}
+Provides:	python(abi) = %{dirver}
 BuildRequires:	XFree86-devel 
 BuildRequires:	blt
 BuildRequires:	db2-devel, db4-devel
