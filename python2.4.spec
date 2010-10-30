@@ -188,7 +188,7 @@ export TMP="/tmp" TMPDIR="/tmp"
 # (misc) test_minidom is not working for the moment
 # tested on 2.4.1 (mdk), on ubuntu, on debian, on freebsd and gentoo
 # should be reenabled for 2.4.3
-TESTOPTS="-l -x test_linuxaudiodev -x test_nis -x test_minidom -x test_socket -x test_openpty"
+TESTOPTS="-l -x test_linuxaudiodev -x test_nis -x test_minidom -x test_socket"
 %ifarch x86_64
 TESTOPTS="$TESTOPTS  -x test_pwd"
 %endif
