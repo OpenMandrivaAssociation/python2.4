@@ -1,0 +1,29 @@
+diff -Naur --exclude '*.orig' Python-2.4.5/Tools/scripts/h2py.py Python-2.4.5-biarch-headers/Tools/scripts/h2py.py
+--- Python-2.4.5/Tools/scripts/h2py.py	2004-08-09 19:27:55.000000000 +0200
++++ Python-2.4.5-biarch-headers/Tools/scripts/h2py.py	2008-12-19 10:53:43.000000000 +0100
+@@ -29,7 +29,7 @@
+   '^[\t ]*#[\t ]*define[\t ]+'
+   '([a-zA-Z0-9_]+)\(([_a-zA-Z][_a-zA-Z0-9]*)\)[\t ]+')
+ 
+-p_include = re.compile('^[\t ]*#[\t ]*include[\t ]+<([a-zA-Z0-9_/\.]+)')
++p_include = re.compile('^[\t ]*#[\t ]*include[\t ]+<([-a-zA-Z0-9_/\.]+)')
+ 
+ p_comment = re.compile(r'/\*([^*]+|\*+[^/])*(\*+/)?')
+ p_cpp_comment = re.compile('//.*')
+@@ -40,6 +40,16 @@
+ 
+ p_hex = re.compile(r"0x([0-9a-fA-F]+)L?")
+ 
++### FIXME
++#
++# We really need to handle bi-arch asm headers. Otherwise, we will end
++# up into generating double definitions and finally the wrong ones are
++# to be used afterwards.
++#
++# p_ifarch, p_else, p_endif, if_depth, what else is needed?
++#
++###
++
+ filedict = {}
+ importable = {}
+ 

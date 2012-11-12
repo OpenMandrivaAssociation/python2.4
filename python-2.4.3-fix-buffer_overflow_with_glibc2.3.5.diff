@@ -1,0 +1,13 @@
+Index: Python/sysmodule.c
+===================================================================
+--- Python/sysmodule.c
++++ Python/sysmodule.c	2006-07-20 20:45:47.000000000 +0200
+@@ -1184,7 +1184,7 @@
+ PySys_SetArgv(int argc, char **argv)
+ {
+ #if defined(HAVE_REALPATH)
+-	char fullpath[MAXPATHLEN];
++	char fullpath[PATH_MAX];
+ #elif defined(MS_WINDOWS)
+ 	char fullpath[MAX_PATH];
+ #endif
